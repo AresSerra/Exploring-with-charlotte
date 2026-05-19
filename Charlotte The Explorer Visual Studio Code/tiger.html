@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tiger</title>
+    <style>
+      :root {
+        --bg: #f6e7bc;
+        --ink: #111111;
+        --accent: #df3a0e;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+      }
+
+      body {
+        min-height: 100vh;
+        background: #f6e7bc;
+        color: var(--ink);
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .page {
+        position: relative;
+        width: 100%;
+        min-height: 100vh;
+        padding: 26px 40px 18px 40px;
+        overflow: hidden;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 8px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .title-block {
+        position: relative;
+        margin-bottom: 2px;
+        padding-bottom: 18px;
+      }
+
+      h1 {
+        margin: 0;
+        font-family: Impact, Haettenschweiler, "Arial Black", sans-serif;
+        font-size: clamp(5.2rem, 9vw, 8.4rem);
+        line-height: 0.83;
+        letter-spacing: 0.01em;
+      }
+
+      .subtitle {
+        position: absolute;
+        left: 166px;
+        top: 98px;
+        font-size: clamp(1.35rem, 1.9vw, 1.7rem);
+        font-style: italic;
+        font-weight: 700;
+        transform: skewX(-8deg);
+      }
+
+      .content {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 18px 38px;
+        align-items: start;
+        margin-top: 4px;
+      }
+
+      .intro {
+        margin: 0 0 20px;
+        font-size: 1.14rem;
+        line-height: 1.12;
+        max-width: 98%;
+      }
+
+      .section-title,
+      .right-top-title,
+      .video-title {
+        margin: 0 0 6px;
+        font-size: 1.32rem;
+        line-height: 1.1;
+        font-weight: 800;
+      }
+
+      .right-top-title {
+        margin-bottom: 4px;
+        font-size: 1.28rem;
+      }
+
+      .video-title {
+        margin: 22px 0 8px;
+        font-size: 1.28rem;
+      }
+
+      .curiosities {
+        margin: 0;
+        padding-left: 24px;
+        font-size: 1.08rem;
+        line-height: 1.17;
+        max-width: 96%;
+      }
+
+      .curiosities li {
+        margin-bottom: 3px;
+      }
+
+      .tiger-stage {
+        position: relative;
+        min-height: 480px;
+        margin-top: 12px;
+      }
+
+      .tiger-stage::before {
+        content: "";
+        position: absolute;
+        right: -10px;
+        bottom: 8px;
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        background: #6f7600;
+      }
+
+      .tiger-image {
+        position: absolute;
+        right: -10px;
+        bottom: -108px;
+        width: min(100%, 520px);
+        height: auto;
+        filter: drop-shadow(0 10px 18px rgba(30, 18, 6, 0.24));
+      }
+
+      .grass-sketch {
+        position: absolute;
+        right: 128px;
+        bottom: -24px;
+        width: 220px;
+        height: auto;
+        opacity: 0.82;
+        pointer-events: none;
+      }
+
+      .right-top-title {
+        margin: 0 0 4px;
+      }
+
+      .facts {
+        margin: 0;
+        font-size: 1.07rem;
+        line-height: 1.11;
+      }
+
+      .fact-row {
+        margin: 0 0 2px;
+      }
+
+      .fact-label {
+        font-weight: 800;
+      }
+
+      .video-wrap {
+        position: relative;
+        width: min(100%, 545px);
+      }
+
+      .video-frame {
+        position: relative;
+        aspect-ratio: 545 / 340;
+        overflow: hidden;
+        background: #000;
+        box-shadow: 0 10px 20px rgba(61, 37, 12, 0.18);
+      }
+
+      .video-player {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        background: #000;
+      }
+
+      @media (max-width: 980px) {
+        .page {
+          padding: 20px 18px 16px;
+        }
+
+        .content {
+          grid-template-columns: 1fr;
+        }
+
+        .subtitle {
+          left: 150px;
+          top: 72px;
+        }
+
+        .tiger-stage {
+          min-height: 430px;
+        }
+
+        .tiger-image {
+          width: min(100%, 470px);
+          right: -8px;
+          bottom: -88px;
+        }
+
+        .grass-sketch {
+          right: 100px;
+        }
+      }
+
+      @media (max-width: 680px) {
+        .page {
+          padding: 16px 12px 14px;
+        }
+
+        h1 {
+          font-size: clamp(4rem, 16vw, 5.8rem);
+        }
+
+        .subtitle {
+          position: relative;
+          left: 0;
+          top: -6px;
+          display: block;
+          margin-left: 138px;
+        }
+
+        .tiger-stage {
+          min-height: 340px;
+        }
+
+        .tiger-stage::before {
+          right: 0;
+          width: 240px;
+          height: 240px;
+        }
+
+        .tiger-image {
+          width: min(100%, 330px);
+          right: 0;
+          bottom: -68px;
+        }
+
+        .grass-sketch {
+          right: 70px;
+          width: 170px;
+        }
+
+        .video-wrap {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <section class="hero">
+        <div class="title-block">
+          <h1>TIGER</h1>
+          <span class="subtitle">Panthera tigris</span>
+        </div>
+
+        <div class="content">
+          <section aria-label="Tiger information and video">
+            <h2 class="right-top-title">
+              Here is more information about this animals!!
+            </h2>
+            <div class="facts">
+              <p class="fact-row">
+                <span class="fact-label">WEIGHT:</span> 90 - 300 kg
+              </p>
+              <p class="fact-row">
+                <span class="fact-label">HEIGHT:</span> 80 - 120 cm
+              </p>
+              <p class="fact-row">
+                <span class="fact-label">SPEED:</span> 49 - 65 km/h (max.)
+              </p>
+              <p class="fact-row">
+                <span class="fact-label">LIFESPAN:</span> 10 - 15 years
+              </p>
+              <p class="fact-row">
+                <span class="fact-label">HABITAT:</span> jungles, evergreen
+                forests, grasslands
+              </p>
+              <p class="fact-row">
+                <span class="fact-label">CONTINENT:</span> Asia
+              </p>
+            </div>
+
+            <h2 class="video-title">And in this video you will see it!!!</h2>
+            <div class="video-wrap">
+              <div class="video-frame">
+                <video class="video-player" controls preload="metadata">
+                  <source src="img/tiger.mp4" type="video/mp4" />
+                </video>
+              </div>
+            </div>
+          </section>
+
+          <section aria-label="Tiger curiosities and illustration">
+            <p class="intro">
+              The tiger is a large wild cat with orange fur and black stripes.
+              It is strong, fast, and a very good hunter. Tigers like forests
+              and can also swim well.
+            </p>
+
+            <h2 class="section-title">Some curiosities about this animal!</h2>
+            <ul class="curiosities">
+              <li>
+                Unlike most cats, tigers love to swim and are excellent in the
+                water!
+              </li>
+              <li>
+                A tiger's stripes are like our fingerprints, no two tigers have
+                the same stripes!
+              </li>
+            </ul>
+
+            <div class="tiger-stage">
+              <img
+                class="grass-sketch"
+                src="img/360_F_450636480_PQErLw1CNR8L4KTXCqVZtYHHM5FOLLqp 1.png"
+                alt="Grass sketch"
+                aria-hidden="true"
+              />
+              <img
+                class="tiger-image"
+                src="img/22 Animales que parecen ser extremadamente felices 1.png"
+                alt="Tiger illustration"
+              />
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

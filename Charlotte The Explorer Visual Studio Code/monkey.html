@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Monkey</title>
+    <style>
+      :root {
+        --bg: #f5e3b8;
+        --ink: #111111;
+        --accent: #dd3c0f;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+      }
+
+      body {
+        min-height: 100vh;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .page {
+        position: relative;
+        width: 100%;
+        min-height: 100vh;
+        padding: 26px 44px 20px;
+        overflow: hidden;
+      }
+
+      .hero {
+        display: grid;
+        gap: 8px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .title-block {
+        position: relative;
+        margin-bottom: 14px;
+      }
+
+      h1 {
+        margin: 0;
+        font-family: Impact, Haettenschweiler, "Arial Black", sans-serif;
+        font-size: clamp(5.2rem, 9vw, 8.5rem);
+        line-height: 0.83;
+        letter-spacing: 0.01em;
+      }
+
+      .subtitle {
+        position: absolute;
+        left: 108px;
+        top: 114px;
+        font-size: clamp(1.3rem, 1.9vw, 1.65rem);
+        font-style: italic;
+        font-weight: 700;
+        transform: skewX(-8deg);
+      }
+
+      .content {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 24px 40px;
+        align-items: start;
+        margin-top: 14px;
+      }
+
+      .intro-wide {
+        grid-column: 1 / -1;
+        margin: 4px 0 0;
+        max-width: none;
+        font-size: 1.14rem;
+        line-height: 1.13;
+      }
+
+      .intro {
+        margin: 0 0 16px;
+        font-size: 1.14rem;
+        line-height: 1.13;
+        max-width: 95%;
+      }
+
+      .section-title,
+      .right-top-title,
+      .video-title {
+        margin: 0 0 6px;
+        font-size: 1.28rem;
+        line-height: 1.08;
+        font-weight: 800;
+      }
+
+      .curiosities {
+        margin: 0;
+        padding-left: 24px;
+        font-size: 1.08rem;
+        line-height: 1.16;
+        max-width: 95%;
+      }
+
+      .curiosities li {
+        margin-bottom: 3px;
+      }
+
+      .video-wrap {
+        position: relative;
+        margin-top: 18px;
+        width: min(100%, 585px);
+      }
+
+      .video-frame {
+        position: relative;
+        aspect-ratio: 585 / 344;
+        background: #000;
+        overflow: hidden;
+      }
+
+      .video-embed {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+        border: 0;
+      }
+
+      .right-top-title {
+        margin-bottom: 4px;
+      }
+
+      .facts {
+        margin: 0;
+        font-size: 1.06rem;
+        line-height: 1.12;
+      }
+
+      .fact-row {
+        margin: 0 0 2px;
+      }
+
+      .fact-label {
+        font-weight: 800;
+      }
+
+      .tree-border {
+        position: absolute;
+        left: -12px;
+        top: 0;
+        width: 240px;
+        height: auto;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .monkey-stage {
+        position: relative;
+        min-height: 440px;
+        margin-top: 10px;
+      }
+
+      .monkey-stage::before {
+        content: "";
+        position: absolute;
+        right: -22px;
+        bottom: -34px;
+        width: 372px;
+        height: 372px;
+        border-radius: 50%;
+        background: #6b8e23;
+        z-index: 0;
+      }
+
+      .monkey-image {
+        position: absolute;
+        right: -8px;
+        bottom: -34px;
+        width: min(100%, 388px);
+        height: auto;
+        filter: drop-shadow(0 10px 18px rgba(30, 18, 6, 0.2));
+        z-index: 1;
+      }
+
+      @media (max-width: 980px) {
+        .page {
+          padding: 20px 18px 16px;
+        }
+
+        .content {
+          grid-template-columns: 1fr;
+        }
+
+        .intro-wide {
+          grid-column: auto;
+        }
+
+        .subtitle {
+          left: 92px;
+          top: 102px;
+        }
+
+        .tree-border {
+          width: 180px;
+        }
+
+        .monkey-stage {
+          min-height: 380px;
+        }
+
+        .monkey-image {
+          width: min(100%, 340px);
+          bottom: -28px;
+        }
+
+        .video-wrap {
+          width: 100%;
+        }
+      }
+
+      @media (max-width: 680px) {
+        .page {
+          padding: 16px 12px 14px;
+        }
+
+        h1 {
+          font-size: clamp(4rem, 16vw, 5.8rem);
+        }
+
+        .subtitle {
+          position: relative;
+          left: 0;
+          top: -6px;
+          display: block;
+          margin-left: 82px;
+        }
+
+        .tree-border {
+          width: 150px;
+        }
+
+        .monkey-stage {
+          min-height: 320px;
+        }
+
+        .monkey-stage::before {
+          width: 290px;
+          height: 290px;
+        }
+
+        .monkey-image {
+          width: min(100%, 300px);
+          bottom: -24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <img
+        class="tree-border"
+        src="img/O9uvGYgFRBiz7kMF-Wd7Rg 1.png"
+        alt="Tree trunk illustration"
+        aria-hidden="true"
+      />
+      <section class="hero">
+        <div class="title-block">
+          <h1>MONKEY</h1>
+          <span class="subtitle">Primates</span>
+        </div>
+
+        <p class="intro intro-wide">
+          The monkey is a playful and clever animal. It has two arms, two legs,
+          and often a long tail. Monkeys like to climb trees, swing on branches,
+          and eat fruits.
+        </p>
+
+        <div class="content">
+          <section aria-label="Monkey information and video">
+            <h2 class="right-top-title">
+              Here is more information about this animals!!
+            </h2>
+            <div class="facts">
+              <p class="fact-row">
+                <span class="fact-label">WEIGHT:</span> 5 - 20 kg
+              </p>
+              <p class="fact-row">
+                <span class="fact-label">HEIGHT:</span> 40 - 80 cm
+              </p>
+              <p class="fact-row">
+                <span class="fact-label">SPEED:</span> 55 km/h (max.)
+              </p>
+              <p class="fact-row">
+                <span class="fact-label">LIFESPAN:</span> 10 - 12 years
+              </p>
+              <p class="fact-row">
+                <span class="fact-label">HABITAT:</span> tropical rainforests,
+                humid and dry forests, mountainous areas
+              </p>
+              <p class="fact-row">
+                <span class="fact-label">CONTINENT:</span> Asia
+              </p>
+            </div>
+
+            <div class="video-title">And in this video you will see it!!!</div>
+            <div class="video-wrap">
+              <div class="video-frame"></div>
+              <iframe
+                class="video-embed"
+                src="https://www.youtube.com/embed/T_pmEA_k0iA?rel=0"
+                title="Monkey video preview"
+                allow="
+                  accelerometer;
+                  autoplay;
+                  clipboard-write;
+                  encrypted-media;
+                  gyroscope;
+                  picture-in-picture;
+                  web-share;
+                "
+                allowfullscreen
+              ></iframe>
+            </div>
+          </section>
+
+          <section aria-label="Monkey curiosities and illustration">
+            <h2 class="section-title">Some curiosities about this animal!</h2>
+            <ul class="curiosities">
+              <li>
+                They use tools, like stones to crack nuts or branches to extract
+                honey.
+              </li>
+              <li>
+                They're very playful! They spend a lot of time cuddling and
+                grooming each other to show affection.
+              </li>
+            </ul>
+
+            <div class="monkey-stage">
+              <img
+                class="monkey-image"
+                src="img/The Indian Grey Langur and its little antics 1.png"
+                alt="Monkey illustration"
+              />
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

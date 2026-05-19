@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Come exploring with Charlotte!</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+      :root {
+        --bg: #f3e3b7;
+        --ink: #111111;
+        --shadow: rgba(92, 58, 18, 0.18);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      body {
+        min-height: 100vh;
+        background: radial-gradient(
+          circle at top,
+          #f8ebc8 0%,
+          var(--bg) 70%,
+          #ecd79f 100%
+        );
+        color: var(--ink);
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .page {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 18px 24px 16px;
+        height: 100vh;
+        overflow: hidden;
+        display: grid;
+        grid-template-rows: auto 1fr;
+      }
+
+      .landing-page {
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      .landing-page__hero {
+        height: 100%;
+      }
+
+      .hero {
+        display: grid;
+        gap: 12px;
+        height: 100%;
+        grid-template-rows: auto 1fr;
+      }
+
+      .title-block {
+        position: relative;
+        margin-bottom: 4px;
+      }
+
+      h1 {
+        margin: 0;
+        font-family: Impact, Haettenschweiler, "Arial Black", sans-serif;
+        font-size: clamp(3.5rem, 7vw, 5.5rem);
+        line-height: 0.86;
+        letter-spacing: 0.01em;
+      }
+
+      .subtitle {
+        position: relative;
+        left: 0;
+        top: 0;
+        display: block;
+        font-size: clamp(1.45rem, 2vw, 1.95rem);
+        font-style: italic;
+        font-weight: 700;
+        transform: skewX(-8deg);
+      }
+
+      .intro {
+        margin: 0 0 6px;
+        font-size: 1.1rem;
+        line-height: 1.12;
+      }
+
+      .content {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 18px 24px;
+        align-items: start;
+        overflow: hidden;
+        min-height: 0;
+        height: 100%;
+      }
+
+      .panel {
+        min-width: 0;
+        overflow: hidden;
+        display: grid;
+        grid-template-rows: auto 1fr;
+        min-height: 0;
+        gap: 12px;
+      }
+
+      .text-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 18px 24px;
+        align-items: start;
+      }
+
+      .media-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+        gap: 18px 24px;
+        align-items: start;
+      }
+      .media-panel {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+      }
+
+      .text-panel {
+        padding-bottom: 8px;
+      }
+
+      .facts,
+      .curiosities {
+        margin: 0;
+        font-size: 1rem;
+        line-height: 1.2;
+      }
+
+      .curiosities {
+        padding-left: 24px;
+      }
+
+      .curiosities li {
+        margin-bottom: 6px;
+      }
+      /* duplicate media-grid rules removed */
+
+      .animal-stage {
+        position: relative;
+        min-height: 260px;
+        height: 260px;
+        width: 320px;
+        max-width: 100%;
+        display: block;
+        padding: 12px;
+        overflow: hidden;
+      }
+
+      .animal-stage::before {
+        content: "";
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 240px;
+        height: 240px;
+        border-radius: 50%;
+        background: var(--circle, #e14210);
+      }
+
+      .animal-image {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        max-width: 300px;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        filter: drop-shadow(0 10px 18px rgba(43, 24, 7, 0.22));
+        z-index: 1;
+      }
+
+      .animal-image.fit-right {
+        left: auto;
+        right: auto;
+      }
+
+      .video-title {
+        margin: 0 0 10px;
+        font-size: 1.42rem;
+        font-weight: 800;
+      }
+
+      .video-stage {
+        position: relative;
+        width: 100%;
+        min-height: 240px;
+        height: 100%;
+        min-height: 0;
+        display: grid;
+        grid-template-rows: min-content 1fr;
+      }
+
+      .video-sketch {
+        position: absolute;
+        pointer-events: none;
+        opacity: 0.72;
+      }
+
+      .video-sketch.grass {
+        right: 12px;
+        top: -74px;
+        width: 185px;
+        height: 88px;
+        background:
+          radial-gradient(
+            circle at 18% 88%,
+            rgba(95, 95, 95, 0.38) 0 1px,
+            transparent 2px
+          ),
+          radial-gradient(
+            circle at 30% 92%,
+            rgba(95, 95, 95, 0.35) 0 1px,
+            transparent 2px
+          ),
+          radial-gradient(
+            circle at 42% 90%,
+            rgba(95, 95, 95, 0.32) 0 1px,
+            transparent 2px
+          ),
+          radial-gradient(
+            circle at 56% 88%,
+            rgba(95, 95, 95, 0.35) 0 1px,
+            transparent 2px
+          ),
+          radial-gradient(
+            circle at 70% 93%,
+            rgba(95, 95, 95, 0.33) 0 1px,
+            transparent 2px
+          ),
+          radial-gradient(
+            circle at 84% 89%,
+            rgba(95, 95, 95, 0.3) 0 1px,
+            transparent 2px
+          );
+      }
+
+      .video-sketch.farm {
+        left: 12px;
+        top: -72px;
+        width: 220px;
+        height: 86px;
+        background:
+          linear-gradient(
+            180deg,
+            transparent 0 56%,
+            rgba(102, 102, 102, 0.3) 56% 57%,
+            transparent 57% 100%
+          ),
+          radial-gradient(
+            circle at 35% 68%,
+            rgba(96, 96, 96, 0.35) 0 1px,
+            transparent 2px
+          ),
+          radial-gradient(
+            circle at 63% 67%,
+            rgba(96, 96, 96, 0.28) 0 1px,
+            transparent 2px
+          );
+      }
+
+      .video-frame {
+        position: relative;
+        aspect-ratio: 545 / 340;
+        overflow: hidden;
+        box-shadow: 0 10px 20px rgba(59, 35, 11, 0.18);
+        max-height: 100%;
+      }
+
+      .video-frame.black {
+        background: #000;
+      }
+
+      .video-frame.gradient {
+        background:
+          linear-gradient(
+            180deg,
+            rgba(229, 232, 239, 0.96) 0%,
+            rgba(238, 232, 222, 0.9) 20%,
+            rgba(202, 216, 194, 0.18) 20.1%,
+            rgba(144, 171, 108, 0.12) 100%
+          ),
+          linear-gradient(
+            180deg,
+            #ece7df 0%,
+            #c6d2b0 45%,
+            #8b9a63 46%,
+            #7f6b55 100%
+          );
+      }
+
+      .video-frame.photo {
+        background: linear-gradient(
+          180deg,
+          #dfe7d5 0%,
+          #b0bc8e 44%,
+          #7d6b4a 100%
+        );
+      }
+
+      .video-frame::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: var(--video-overlay, none);
+      }
+
+      .video-photo {
+        position: absolute;
+        left: var(--video-photo-left, 32%);
+        top: var(--video-photo-top, 12%);
+        width: var(--video-photo-width, 55%);
+        height: auto;
+        filter: saturate(0.96) contrast(0.98);
+      }
+
+      .video-photo.full {
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .video-iframe,
+      .video-player {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+        object-fit: cover;
+      }
+
+      .video-shadow {
+        position: absolute;
+        left: 29%;
+        bottom: 18%;
+        width: 30%;
+        height: 10%;
+        background: rgba(96, 72, 40, 0.22);
+        border-radius: 50%;
+        filter: blur(6px);
+        animation: shadowMove 4.8s ease-in-out infinite;
+      }
+
+      .farm-still {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(
+            180deg,
+            transparent 0 25%,
+            rgba(110, 127, 92, 0.12) 25% 50%,
+            rgba(105, 73, 45, 0.16) 50% 100%
+          ),
+          linear-gradient(
+            180deg,
+            #ebeff4 0%,
+            #d5ddca 32%,
+            #93ab64 33%,
+            #74814f 56%,
+            #907659 100%
+          );
+      }
+
+      .animal-floating {
+        animation: float 4.8s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-6px);
+        }
+      }
+
+      @keyframes shadowMove {
+        0%,
+        100% {
+          transform: translateX(0);
+          opacity: 0.34;
+        }
+        35% {
+          transform: translateX(-9px);
+          opacity: 0.26;
+        }
+        70% {
+          transform: translateX(7px);
+          opacity: 0.3;
+        }
+      }
+
+      @media (max-width: 980px) {
+        .page {
+          padding: 22px 18px 18px;
+          grid-template-rows: auto 1fr;
+        }
+
+        .content,
+        .media-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .subtitle {
+          left: 0;
+          display: block;
+          margin-left: 0.35rem;
+        }
+
+        .animal-stage {
+          min-height: 360px;
+        }
+
+        .animal-image {
+          width: min(100%, 430px);
+        }
+
+        .video-stage {
+          width: 100%;
+          min-height: 260px;
+        }
+
+        .video-sketch.grass,
+        .video-sketch.farm {
+          top: -60px;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .page {
+          padding: 18px 14px 16px;
+        }
+
+        h1 {
+          font-size: clamp(4rem, 18vw, 5.8rem);
+        }
+
+        .intro,
+        .facts,
+        .curiosities {
+          max-width: 100%;
+          font-size: 1rem;
+        }
+
+        .heading,
+        .video-title {
+          font-size: 1.2rem;
+        }
+
+        .animal-stage {
+          min-height: 320px;
+        }
+
+        .animal-stage::before {
+          width: 250px;
+          height: 250px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="landing-page" id="landing-page">
+      <section class="landing-page__hero">
+        <h1 class="landing-page__title">
+          <span>Come exploring</span>
+          <span>with CHARLOTTE!!</span>
+        </h1>
+
+        <div class="landing-page__grid">
+          <div
+            class="landing-page__map-wrap"
+            aria-label="Treasure map illustration"
+          >
+            <img
+              class="landing-page__map"
+              src="img/old-treasure-map-sketch-hand-drawn-illustrations-vector 1.png"
+              alt="Treasure map illustration"
+            />
+          </div>
+
+          <div
+            class="landing-page__character-wrap"
+            aria-label="Charlotte explorer illustration"
+          >
+            <img
+              class="landing-page__character"
+              src="img/5ed08e91-9a85-48cb-a1f1-54abcce112e0_rwc_22x18x1179x1179x1179 1.png"
+              alt="Charlotte explorer character"
+            />
+          </div>
+        </div>
+
+        <div class="landing-page__note">
+          TO START, PLEASE SCAN THE ANIMAL YOU WANT TO
+          <br />
+          KNOW MORE ABOUT IN THE SCANNER!!!!
+        </div>
+      </section>
+    </main>
+
+    <main class="page" id="app" hidden></main>
+
+    <script src="js/simple-web-serial.min.js"></script>
+    <script src="js/javascript.js"></script>
+  </body>
+</html>

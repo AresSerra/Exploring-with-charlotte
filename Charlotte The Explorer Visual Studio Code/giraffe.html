@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Giraffe</title>
+    <style>
+      :root {
+        --bg: #f5e3b8;
+        --ink: #111111;
+        --accent: #dd3c0f;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+      }
+
+      body {
+        min-height: 100vh;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .page {
+        width: 100%;
+        min-height: 100vh;
+        padding: 26px 44px 20px;
+      }
+
+      .hero {
+        display: grid;
+        gap: 8px;
+      }
+
+      .title-block {
+        position: relative;
+        margin-bottom: 2px;
+      }
+
+      h1 {
+        margin: 0;
+        font-family: Impact, Haettenschweiler, "Arial Black", sans-serif;
+        font-size: clamp(5.2rem, 9vw, 8.5rem);
+        line-height: 0.83;
+        letter-spacing: 0.01em;
+      }
+
+      .subtitle {
+        position: absolute;
+        left: 108px;
+        top: 130px;
+        font-size: clamp(1.3rem, 1.9vw, 1.65rem);
+        font-style: italic;
+        font-weight: 700;
+        transform: skewX(-8deg);
+      }
+
+      .content {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 24px 40px;
+        align-items: start;
+        margin-top: 32px;
+      }
+
+      .intro {
+        margin: 0 0 16px;
+        font-size: 1.14rem;
+        line-height: 1.13;
+        max-width: 95%;
+      }
+
+      .section-title,
+      .right-top-title,
+      .video-title {
+        margin: 0 0 6px;
+        font-size: 1.28rem;
+        line-height: 1.08;
+        font-weight: 800;
+      }
+
+      .curiosities {
+        margin: 0;
+        padding-left: 24px;
+        font-size: 1.08rem;
+        line-height: 1.16;
+        max-width: 95%;
+      }
+
+      .curiosities li {
+        margin-bottom: 3px;
+      }
+
+      .video-wrap {
+        position: relative;
+        margin-top: 18px;
+        width: min(100%, 585px);
+      }
+
+      .video-frame {
+        position: relative;
+        aspect-ratio: 585 / 344;
+        background: #000;
+        overflow: hidden;
+      }
+
+      .video-embed {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+        border: 0;
+      }
+
+      .right-top-title {
+        margin-bottom: 4px;
+      }
+
+      .facts {
+        margin: 0;
+        font-size: 1.06rem;
+        line-height: 1.12;
+      }
+
+      .fact-row {
+        margin: 0 0 2px;
+      }
+
+      .fact-label {
+        font-weight: 800;
+      }
+
+      .giraffe-stage {
+        position: relative;
+        min-height: 460px;
+        margin-top: 34px;
+      }
+
+      .giraffe-stage::before {
+        content: "";
+        position: absolute;
+        right: -20px;
+        bottom: -10px;
+        width: 390px;
+        height: 390px;
+        border-radius: 50%;
+        background: #4caf50;
+        z-index: 0;
+      }
+
+      .giraffe-image {
+        position: absolute;
+        right: -4px;
+        bottom: -40px;
+        width: min(100%, 390px);
+        height: auto;
+        filter: drop-shadow(0 10px 18px rgba(30, 18, 6, 0.2));
+        z-index: 1;
+      }
+
+      .farm-sketch {
+        position: absolute;
+        right: 10px;
+        top: -54px;
+        width: 200px;
+        height: auto;
+        opacity: 0.82;
+        pointer-events: none;
+      }
+
+      @media (max-width: 980px) {
+        .page {
+          padding: 20px 18px 16px;
+        }
+
+        .content {
+          grid-template-columns: 1fr;
+        }
+
+        .subtitle {
+          left: 92px;
+          top: 76px;
+        }
+
+        .giraffe-stage {
+          min-height: 380px;
+        }
+
+        .giraffe-image {
+          width: min(100%, 340px);
+          bottom: -28px;
+        }
+
+        .video-wrap {
+          width: 100%;
+        }
+      }
+
+      @media (max-width: 680px) {
+        .page {
+          padding: 16px 12px 14px;
+        }
+
+        h1 {
+          font-size: clamp(4rem, 16vw, 5.8rem);
+        }
+
+        .subtitle {
+          position: relative;
+          left: 0;
+          top: -6px;
+          display: block;
+          margin-left: 82px;
+        }
+
+        .giraffe-stage {
+          min-height: 320px;
+        }
+
+        .giraffe-stage::before {
+          width: 300px;
+          height: 300px;
+        }
+
+        .giraffe-image {
+          width: min(100%, 300px);
+          bottom: -24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <section class="hero">
+        <div class="title-block">
+          <h1>GIRAFFE</h1>
+          <span class="subtitle">Giraffa camelopardalis</span>
+        </div>
+
+        <div class="content">
+          <section aria-label="Giraffe description and curiosities">
+            <p class="intro">
+              The giraffe is the tallest land animal in the world! It has a very
+              long neck, four long legs, and a body covered with beautiful
+              spots. Giraffes eat leaves from tall trees and can run very fast.
+              They live together in groups called herds on African savannas.
+            </p>
+
+            <h2 class="section-title">Some curiosities about this animal!</h2>
+            <ul class="curiosities">
+              <li>
+                Giraffes have the tallest hearts on Earth—up to 60 centimeters
+                long—to pump blood all the way up their long necks!
+              </li>
+              <li>
+                They can clean their ears and eyes with their long tongue, which
+                can be over 50 centimeters long!
+              </li>
+            </ul>
+
+            <div class="video-title">And in this video you will see it!!!</div>
+            <div class="video-wrap">
+              <div class="video-frame"></div>
+              <iframe
+                class="video-embed"
+                src="https://www.youtube.com/embed/et-9rGM7AwE?rel=0"
+                title="Giraffe video preview"
+                allow="
+                  accelerometer;
+                  autoplay;
+                  clipboard-write;
+                  encrypted-media;
+                  gyroscope;
+                  picture-in-picture;
+                  web-share;
+                "
+                allowfullscreen
+              ></iframe>
+            </div>
+          </section>
+
+          <section aria-label="Giraffe information and illustration">
+            <h2 class="right-top-title">
+              Here is more information about this animals!!
+            </h2>
+            <div class="facts">
+              <p class="fact-row">
+                <span class="fact-label">WEIGHT:</span> 750 - 1600 kg
+              </p>
+              <p class="fact-row">
+                <span class="fact-label">HEIGHT:</span> 4.8 - 5.5 m
+              </p>
+              <p class="fact-row">
+                <span class="fact-label">SPEED:</span> 60 km/h (max.)
+              </p>
+              <p class="fact-row">
+                <span class="fact-label">LIFESPAN:</span> 15 - 25 years
+              </p>
+              <p class="fact-row">
+                <span class="fact-label">HABITAT:</span> Savannas, grasslands,
+                forests
+              </p>
+              <p class="fact-row">
+                <span class="fact-label">CONTINENT:</span> Africa
+              </p>
+            </div>
+
+            <div class="giraffe-stage">
+              <img
+                class="farm-sketch"
+                src="img/360_F_450636480_TjdOIDKpHSsQa0rRBLhUCl2MQCfXFPhX 1.png"
+                alt="Grass sketch"
+                aria-hidden="true"
+              />
+              <img
+                class="giraffe-image"
+                src="img/-55 1.png"
+                alt="Giraffe illustration"
+              />
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

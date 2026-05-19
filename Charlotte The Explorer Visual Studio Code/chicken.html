@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chicken</title>
+    <style>
+      :root {
+        --bg: #f5e3b8;
+        --ink: #111111;
+        --accent: #dd3c0f;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+      }
+
+      body {
+        min-height: 100vh;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .page {
+        width: 100%;
+        min-height: 100vh;
+        padding: 26px 44px 20px;
+      }
+
+      .hero {
+        display: grid;
+        gap: 8px;
+      }
+
+      .title-block {
+        position: relative;
+        margin-bottom: 2px;
+      }
+
+      h1 {
+        margin: 0;
+        font-family: Impact, Haettenschweiler, "Arial Black", sans-serif;
+        font-size: clamp(5.2rem, 9vw, 8.5rem);
+        line-height: 0.83;
+        letter-spacing: 0.01em;
+      }
+
+      .subtitle {
+        position: absolute;
+        left: 108px;
+        top: 130px;
+        font-size: clamp(1.3rem, 1.9vw, 1.65rem);
+        font-style: italic;
+        font-weight: 700;
+        transform: skewX(-8deg);
+      }
+
+      .content {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 24px 40px;
+        align-items: start;
+        margin-top: 32px;
+      }
+
+      .intro {
+        margin: 0 0 16px;
+        font-size: 1.14rem;
+        line-height: 1.13;
+        max-width: 95%;
+      }
+
+      .section-title,
+      .right-top-title,
+      .video-title {
+        margin: 0 0 6px;
+        font-size: 1.28rem;
+        line-height: 1.08;
+        font-weight: 800;
+      }
+
+      .curiosities {
+        margin: 0;
+        padding-left: 24px;
+        font-size: 1.08rem;
+        line-height: 1.16;
+        max-width: 95%;
+      }
+
+      .curiosities li {
+        margin-bottom: 3px;
+      }
+
+      .video-wrap {
+        position: relative;
+        margin-top: 18px;
+        width: min(100%, 585px);
+      }
+
+      .video-frame {
+        position: relative;
+        aspect-ratio: 585 / 344;
+        background: #000;
+        overflow: hidden;
+      }
+
+      .video-embed {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+        border: 0;
+      }
+
+      .right-top-title {
+        margin-bottom: 4px;
+      }
+
+      .facts {
+        margin: 0;
+        font-size: 1.06rem;
+        line-height: 1.12;
+      }
+
+      .fact-row {
+        margin: 0 0 2px;
+      }
+
+      .fact-label {
+        font-weight: 800;
+      }
+
+      .chicken-stage {
+        position: relative;
+        min-height: 460px;
+        margin-top: 34px;
+      }
+
+      .chicken-stage::before {
+        content: "";
+        position: absolute;
+        right: -6px;
+        bottom: -58px;
+        width: 390px;
+        height: 390px;
+        border-radius: 50%;
+        background: var(--accent);
+        z-index: 0;
+      }
+
+      .chicken-image {
+        position: absolute;
+        right: -4px;
+        bottom: -40px;
+        width: min(100%, 390px);
+        height: auto;
+        filter: drop-shadow(0 10px 18px rgba(30, 18, 6, 0.2));
+        z-index: 1;
+      }
+
+      .farm-sketch {
+        position: absolute;
+        right: 10px;
+        top: -54px;
+        width: 200px;
+        height: auto;
+        opacity: 0.82;
+        pointer-events: none;
+      }
+
+      @media (max-width: 980px) {
+        .page {
+          padding: 20px 18px 16px;
+        }
+
+        .content {
+          grid-template-columns: 1fr;
+        }
+
+        .subtitle {
+          left: 92px;
+          top: 76px;
+        }
+
+        .chicken-stage {
+          min-height: 380px;
+        }
+
+        .chicken-image {
+          width: min(100%, 340px);
+          bottom: -28px;
+        }
+
+        .video-wrap {
+          width: 100%;
+        }
+      }
+
+      @media (max-width: 680px) {
+        .page {
+          padding: 16px 12px 14px;
+        }
+
+        h1 {
+          font-size: clamp(4rem, 16vw, 5.8rem);
+        }
+
+        .subtitle {
+          position: relative;
+          left: 0;
+          top: -6px;
+          display: block;
+          margin-left: 82px;
+        }
+
+        .chicken-stage {
+          min-height: 320px;
+        }
+
+        .chicken-stage::before {
+          width: 300px;
+          height: 300px;
+        }
+
+        .chicken-image {
+          width: min(100%, 300px);
+          bottom: -24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <section class="hero">
+        <div class="title-block">
+          <h1>CHICKEN</h1>
+          <span class="subtitle">Gallus gallus domesticus</span>
+        </div>
+
+        <div class="content">
+          <section aria-label="Chicken description and curiosities">
+            <p class="intro">
+              The chicken is a small farm bird with feathers, wings, and two
+              legs. It pecks at seeds and insects on the ground. Chickens can
+              lay eggs and make sounds like "cluck cluck."
+            </p>
+
+            <h2 class="section-title">Some curiosities about this animal!</h2>
+            <ul class="curiosities">
+              <li>
+                They are direct descendants of dinosaurs, specifically the
+                Tyrannosaurus Rex.
+              </li>
+              <li>
+                Hens talk to their chicks before they hatch through the
+                eggshell.
+              </li>
+            </ul>
+
+            <div class="video-title">And in this video you will see it!!!</div>
+            <div class="video-wrap">
+              <div class="video-frame"></div>
+              <iframe
+                class="video-embed"
+                src="https://www.youtube.com/embed/K3CenN7d30Y?rel=0"
+                title="Chicken video preview"
+                allow="
+                  accelerometer;
+                  autoplay;
+                  clipboard-write;
+                  encrypted-media;
+                  gyroscope;
+                  picture-in-picture;
+                  web-share;
+                "
+                allowfullscreen
+              ></iframe>
+            </div>
+          </section>
+
+          <section aria-label="Chicken information and illustration">
+            <h2 class="right-top-title">
+              Here is more information about this animals!!
+            </h2>
+            <div class="facts">
+              <p class="fact-row">
+                <span class="fact-label">WEIGHT:</span> 1,5 - 2,2 kg
+              </p>
+              <p class="fact-row">
+                <span class="fact-label">HEIGHT:</span> 30 - 50 cm
+              </p>
+              <p class="fact-row">
+                <span class="fact-label">SPEED:</span> 14 km/h (max.)
+              </p>
+              <p class="fact-row">
+                <span class="fact-label">LIFESPAN:</span> 5 - 10 years
+              </p>
+              <p class="fact-row">
+                <span class="fact-label">HABITAT:</span> farms, corrals, rural
+                areas
+              </p>
+              <p class="fact-row">
+                <span class="fact-label">CONTINENT:</span> Asia
+              </p>
+            </div>
+
+            <div class="chicken-stage">
+              <img
+                class="farm-sketch"
+                src="img/360_F_499501550_hyGbdExJcAW7W1GQVT3t3mjJIaswnwSO 1.png"
+                alt="Farm sketch"
+                aria-hidden="true"
+              />
+              <img
+                class="chicken-image"
+                src="img/-56 1.png"
+                alt="Chicken illustration"
+              />
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
