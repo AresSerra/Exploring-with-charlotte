@@ -1,5 +1,6 @@
 // Set up the serial connection
 const connection = SimpleWebSerial.setupSerialConnection({
+  baudRate: 9600,
   requestAccessOnPageLoad: true,
 });
 
